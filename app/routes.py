@@ -2,11 +2,13 @@ from app import app, db
 from app.models import Tarea
 from app.forms import TareaForm
 from flask import render_template, redirect, url_for
+from datetime import datetime
 
 @app.route('/')
 def index():
     tareas = Tarea.query.all()
-    return render_template('index.html', tareas=tareas)
+    current_date = datetime.now()
+    return render_template('index.html', tareas=tareas, current_date=current_date)
 
 @app.route('/agregar_tarea', methods=['GET', 'POST'])
 def agregar_tarea():

@@ -7,9 +7,9 @@ class TareaForm(FlaskForm):
     descripcion = TextAreaField('Descripción', validators=[DataRequired()])
     vencimiento = DateField('Vencimiento', format='%Y-%m-%d', validators=[DataRequired()])
     estado = SelectField('Estado', choices=[
-        ('pendiente', 'Pendiente'),
-        ('en progreso', 'En Progreso'),
-        ('completado', 'Completado'),
-        ('cancelado', 'Cancelado'),
-        ('atrasado', 'Atrasado')
+        ('Pendiente', 'Pendiente'),
+        ('En Progreso', 'En Progreso'),
+        ('Completado', 'Completado'),
+        ('Cancelado', 'Cancelado'),
+        ('Atrasado', 'Atrasado')
         ])

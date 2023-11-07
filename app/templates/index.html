@@ -20,16 +20,17 @@
         {% for tarea in tareas %}
             <tr>
                 <td>{{ tarea.titulo }}</td>
-                <td>{{ tarea.descripcion }}</td>
-                <td>{{ tarea.vencimiento }}</td>
-                <td>{{ tarea.estado }}</td>
+                <td>{{ tarea.descripcion[:20] + '...' if tarea.descripcion|length > 20 else tarea.descripcion }}</td>
+                <td class="{% if tarea.vencimiento < current_date %}atrasado{% endif %}">{{ tarea.vencimiento.strftime('%Y-%m-%d') }}</td>
+                <td class="{% if tarea.estado == 'Completado' %}completado{% endif %}">{{ tarea.estado }}</td>
                 <td>
-                    <a href="{{ url_for('editar_tarea', id=tarea.id) }}">Editar</a>
-                    <a href="{{ url_for('borrar_tarea', id=tarea.id) }}">Borrar</a>
+                    <button class="btn btn-primary" onclick="window.location.href='{{ url_for('editar_tarea', id=tarea.id) }}'">Editar</button>
+                    <button class="btn btn-primary" onclick="window.location.href='{{ url_for('borrar_tarea', id=tarea.id) }}'">Borrar</button>
                 </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
-<a href="{{ url_for('agregar_tarea') }}" class="btn btn-primary">Agregar tarea</a>
+<br />
+<button class="btn btn-primary" onclick="window.location.href='{{ url_for('agregar_tarea') }}'">Agregar tarea</button>
 {% endblock %}
