@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>App Gestion de tareas</title>
+{% endblock %}
+
+{% block body %}
+<h1>Lista de tareas</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Vencimiento</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+            <tr>
+                <td>{{ tarea.titulo }}</td>
+                <td>{{ tarea.descripcion }}</td>
+                <td>{{ tarea.vencimiento }}</td>
+                <td>{{ tarea.estado }}</td>
+                <td>
+                    <a href="{{ url_for('editar_tarea', id=tarea.id) }}">Editar</a>
+                    <a href="{{ url_for('borrar_tarea', id=tarea.id) }}">Borrar</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('agregar_tarea') }}" class="btn btn-primary">Agregar tarea</a>
+{% endblock %}

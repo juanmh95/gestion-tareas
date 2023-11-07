@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Editar Tarea</title>
+{% endblock %}
+{% block body %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      <label for="titulo">Título:</label>
+      {{ form.titulo(class="form-control") }}
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      {{ form.descripcion(class="form-control") }}
+    </div>
+    <div class="form-group">
+      <label for="vencimiento">Vencimiento:</label>
+      {{ form.vencimiento(class="form-control") }}
+    </div>
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      {{ form.estado(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  </form>
+{% endblock %}
