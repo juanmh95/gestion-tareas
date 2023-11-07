@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Tarea</title>
+</head>
+<body>
+    <h1>Editar Tarea</h1>
+    <form action="/editar_tarea/{{ index }}" method="POST">
+        <label for="titulo">Titulo:</label>
+        <input type="text" name="titulo" value="{{ tarea.titulo }}" required><br>
+        <label for="descripcion">Descripcion:</label>
+        <input type="text" name="descripcion" value="{{ tarea.descripcion }}"><br>
+        <label for="vencimiento">Vencimiento:</label>
+        <input type="date" name="vencimiento" value="{{ tarea.vencimiento }}"><br>
+        <label for="estado">Estado:</label>
+        <select name="estado">
+            <option value="pendiente" {% if tarea.estado == 'pendiente' %}selected{% endif %}>Pendiente</option>
+            <option value="en progreso" {% if tarea.estado == 'en progreso' %}selected{% endif %}>En Progreso</option>
+            <option value="completado" {% if tarea.estado == 'completado' %}selected{% endif %}>Completado</option>
+            <option value="cancelado" {% if tarea.estado == 'cancelado' %}selected{% endif %}>Cancelado</option>
+            <option value="atrasado" {% if tarea.estado == 'atrasado' %}selected{% endif %}>Atrasado</option>
+        </select><br>
+        <button type="submit">Actualizar Tarea</button>
+        <a href="{{ url_for('index') }}">Cancelar</a>
+    </form>
+</body>
+</html>
